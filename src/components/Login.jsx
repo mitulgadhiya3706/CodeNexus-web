@@ -35,7 +35,7 @@ const Login = () => {
                             <label className="fieldset-legend flex justify-start gap-0">
                                 Email Id<span className="text-red-500">*</span>{" "}
                             </label>
-                            <input
+                            <input 
                                 type="text"
                                 value={emailId}
                                 onChange={(e) => setEmailId(e.target.value)}
