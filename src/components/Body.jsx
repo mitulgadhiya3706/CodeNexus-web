@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import NavBar from "./NavBar";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,7 +35,7 @@ const Body = () => {
 
     return(
         <div>
-            <Navbar/>
+            <NavBar/>
             <Outlet/>
             <Footer/>
         </div>
