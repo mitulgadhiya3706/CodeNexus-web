@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
 
 const Connections = () => {
-    const connections = useSelector((store) => store.connection);
+    const connections = useSelector((store) => store.connections);
     const dispatch = useDispatch();
 
     const fetchConnections = async () => {
@@ -23,7 +23,8 @@ const Connections = () => {
     }, [])
 
     if (!connections) return;
-    if (connections.length === 0) return <h1>No Connections Found</h1>
+    if (connections.length === 0) 
+        return <h1  className="flex justify-center my-10">No Connections Found</h1>
 
     return (
         <div className="text-center my-10">
@@ -35,7 +36,7 @@ const Connections = () => {
                 return (
                     <div
                         key={_id}
-                        className="flex m-4 p-4 rounded-lg bg-base-300 w-1/3 mx-auto"
+                        className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto"
                     >
                         <div>
                             <img src={photoUrl} alt="photo" className="w-20 h-20 rounded-full" />
