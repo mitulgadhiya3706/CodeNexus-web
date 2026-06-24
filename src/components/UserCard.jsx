@@ -1,12 +1,14 @@
-const UserCard = ({user}) => {
-    const {firstName, lastName, age, about, gender, photoUrl, skills} = user;
-    
+const UserCard = ({ user }) => {
+    if (!user) return null;
+
+    const { firstName, lastName, age, about, gender, photoUrl, skills } = user;
+
     return (
         <>
             <div className="card bg-base-300 w-96 shadow-sm">
                 <figure>
                     <img
-                        src={user.photoUrl} alt="user-photo" />
+                        src={photoUrl} alt="user-photo" />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">{firstName + " " + lastName}</h2>
