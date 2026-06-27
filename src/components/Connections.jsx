@@ -37,21 +37,33 @@ const Connections = () => {
                 return (
                     <div
                         key={_id}
-                        className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto"
+                        className="flex items-center gap-4 m-4 p-4 rounded-lg bg-base-300 w-11/12 lg:w-1/2 mx-auto"
                     >
-                        <div>
-                            <img src={photoUrl} alt="photo" className="w-20 h-20 rounded-full" />
+                        <img
+                            src={photoUrl}
+                            alt="photo"
+                            className="w-20 h-20 rounded-full flex-shrink-0"
+                        />
+                        {/* Text + Button */}
+                        <div className="flex flex-1 justify-between items-center w-full">
+                            {/* User Info */}
+                            <div className="text-left">
+                                <h2 className="font-bold text-xl">
+                                    {firstName} {lastName}
+                                </h2>
+
+                                {age && gender && (
+                                    <p>{age}, {gender}</p>
+                                )}
+                                <p>{about}</p>
+                            </div>
+                            
+                            <Link to={"/chat/" + _id}>
+                                <button className="btn btn-primary ml-4">
+                                    Chat
+                                </button>
+                            </Link>
                         </div>
-                        <div className="text-left mx-4 ">
-                            <h2 className="font-bold text-xl">
-                                {firstName + " " + lastName}
-                            </h2>
-                            {age && gender && <p>{age + ", " + gender}</p>}
-                            <p>{about}</p>
-                        </div>
-                        <Link to={"/chat/" + _id} >
-                            <button className="btn btn-primary mx-20">Chat</button>
-                        </Link>
                     </div>
                 );
             })}
