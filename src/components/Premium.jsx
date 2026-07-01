@@ -11,22 +11,58 @@ const handleBuyClick = async (type) => {
 
     const { amount, keyId, currency, notes, orderId } = order.data;
 
+    // const options = {
+    //     key: "rzp_test_T6JCYa6osF4bQz",
+    //     amount,
+    //     currency,
+    //     name: "CodeNexus",
+    //     description: "Test Transaction",
+    //     order_id: orderId,
+    //     prefill: {
+    //         name: notes.firstName + " " + notes.lastName,
+    //         email: notes.emailId,
+    //         contact: "9999999999",
+    //     },
+    //     theme: {
+    //         color: "#3399cc",
+    //     },
+    // };
+
     const options = {
-        key: "rzp_test_T6JCYa6osF4bQz",
+        key: keyId,
         amount,
         currency,
         name: "CodeNexus",
-        description: "Test Transaction",
+        description: "Premium Membership",
         order_id: orderId,
         prefill: {
             name: notes.firstName + " " + notes.lastName,
-            email: notes.emailId,
-            contact: "9999999999",
+            // email: notes.emailId,
         },
         theme: {
             color: "#3399cc",
         },
+
+        handler: async function (response) {
+    try {
+        await axios.post(
+            BASE_URL + "/payment/verify",
+            {
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature,
+            },
+            { withCredentials: true }
+        );
+        alert("Congratulations! Premium Activated");
+        window.location.reload();
+    } catch (err) {
+        console.error("Payment verification failed:", err?.response?.data || err.message);
+        alert("Payment succeeded but activation failed. Please contact support with your payment ID: " + response.razorpay_payment_id);
+    }
+},
     };
+
     const rzp = new window.Razorpay(options);
     rzp.open();
 }

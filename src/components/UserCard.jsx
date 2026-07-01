@@ -11,7 +11,8 @@ const UserCard = ({ user }) => {
                         src={photoUrl} alt="user-photo" />
                 </figure>
                 <div className="card-body">
-                    <h2 className="card-title">{firstName + " " + lastName}</h2>
+                    <h2 className="card-title">{firstName + " " + lastName}
+                     </h2>
                     {age && gender && <p>{age + ", " + gender}</p>}
                     {skills && <p>{skills}</p>}
                     <p>{about}</p>
