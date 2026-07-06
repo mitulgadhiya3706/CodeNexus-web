@@ -31,6 +31,9 @@ const EditProfile = ({ user }) => {
                 gender,
                 skills,
                 about,
+                gitHubUrl,
+                linkedInUrl,
+                
             },
                 { withCredentials: true }
             );
@@ -167,7 +170,7 @@ const EditProfile = ({ user }) => {
                         </div>
                     </div>
                 </div>
-                <UserCard user={{ firstName, lastName, photoUrl, age, gender,skills, about }} />
+                <UserCard user={{ firstName, lastName, photoUrl, age, gender, skills, about, gitHubUrl, linkedInUrl, isPremium: user.isPremium }} />
             </div>
 
             {showToast && (

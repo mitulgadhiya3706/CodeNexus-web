@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
+import { useSelector } from 'react-redux';
 
 const handleBuyClick = async (type) => {
     const order = await axios.post(
@@ -41,7 +42,7 @@ const handleBuyClick = async (type) => {
         },
         theme: {
             color: "#3399cc",
-        },
+        },  
 
         handler: async function (response) {
     try {
@@ -68,8 +69,9 @@ const handleBuyClick = async (type) => {
 }
 
 
-
 function Premium() {
+    const user = useSelector((store) => store.user);
+    const membershipType = user?.membershipType || "None";
     return (
         <div className='m-20'>
             <div className="flex w-full flex-col lg:flex-row">
@@ -82,7 +84,9 @@ function Premium() {
                         <li>- 3 months</li>
                     </ul>
                     <button className=" btn bg-amber-50 text-black mt-6 w-full sm:w-auto"
-                        onClick={() => handleBuyClick("silver")}>Buy Silver</button>
+                        onClick={() => handleBuyClick("silver")}>
+                        {membershipType === "silver" ? "Already Silver" : "Choose Silver"}
+                        </button>
                 </div>
                 <div className="divider lg:divider-horizontal">OR</div>
                 <div className="card bg-base-300 rounded-box grid h-80 grow place-content-center gap-4">
@@ -94,7 +98,9 @@ function Premium() {
                         <li>- 6 months</li>
                     </ul>
                     <button className=" btn bg-amber-400 text-black mt-6 w-full sm:w-auto"
-                        onClick={() => handleBuyClick("gold")}>Buy Gold</button>
+                        onClick={() => handleBuyClick("gold")}>
+                        {membershipType === "silver" ? "Upgrade to Gold" : "Choose Gold"}
+                        </button>
                 </div>
             </div>
         </div>

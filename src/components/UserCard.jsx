@@ -1,7 +1,7 @@
 const UserCard = ({ user }) => {
     if (!user) return null;
 
-    const { firstName, lastName, age, about, gender, photoUrl, skills } = user;
+    const { firstName, lastName, age, about, gender, photoUrl, skills, gitHubUrl, linkedInUrl, isPremium } = user;
 
     return (
         <>
@@ -12,7 +12,12 @@ const UserCard = ({ user }) => {
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">{firstName + " " + lastName}
-                     </h2>
+                        {isPremium && (
+                            <div className="h-8 w-9 -ml-1">
+                                <p>👑</p>
+                            </div>
+                        )}
+                    </h2>
                     {age && gender && <p>{age + ", " + gender}</p>}
                     {skills && <p>{skills}</p>}
                     <p>{about}</p>
