@@ -33,7 +33,6 @@ const EditProfile = ({ user }) => {
                 about,
                 gitHubUrl,
                 linkedInUrl,
-                
             },
                 { withCredentials: true }
             );
@@ -186,15 +185,6 @@ const EditProfile = ({ user }) => {
 }
 
 export default EditProfile;
-
-
-
-
-
-
-
-
-
 
 
 
