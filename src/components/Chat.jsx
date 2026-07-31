@@ -4,6 +4,7 @@ import { createSocketConnection } from "../utils/socket"
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import { BASE_URL } from '../utils/constants';
+import { SendHorizontal } from 'lucide-react';
 
 function Chat() {
     const { targetUserId } = useParams();
@@ -77,7 +78,7 @@ function Chat() {
 
     return (
         <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
-            <h1 className="p-3 text-2xl border-b border-gray-600">Chat</h1>
+            <h1 className="p-3 text-2xl font-medium border-b border-gray-600">Chat</h1>
             {/* display message */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4"
                 ref={chatContainerRef}>
@@ -119,12 +120,14 @@ function Chat() {
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                    className="flex-1 bg-gray-700 px-4 py-2 rounded-lg focus:outline-none"></input>
+                    className="flex-1 bg-gray-700 px-4 py-2 rounded-lg focus:outline-none">
+                </input>
 
                 <button onClick={sendMessage}
-                    className="bg-indigo-500 px-4 py-2 rounded-lg cursor-pointer hover:bg-indigo-600"
+                     className="flex items-center justify-center gap-1 bg-indigo-500 px-4 py-2 rounded-lg cursor-pointer hover:bg-indigo-600"
                 >
                     Send
+                    <SendHorizontal size={16}/> 
                 </button>
             </div>
         </div>
@@ -132,47 +135,3 @@ function Chat() {
 }
 
 export default Chat;
-
-
-
-
-
-//display messages
-{/* <div key={index} className="chat chat-start">
-                                <div className="chat-image avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img
-                                            alt="profile"
-                                            src={user.photoUrl}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="chat-header">
-                                    {msg.firstName}
-                                    <time className="text-xs opacity-50 ml-2">
-                                        {new Date(msg.time).toLocaleTimeString()}
-                                    </time>
-                                </div>
-                                <div className="chat-bubble">{msg.text}</div>
-                                <div className="chat-footer opacity-50">Delivered</div>
-                            </div>
-                            <div key={index} className="chat chat-end">
-                                <div className="chat-image avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img
-                                            className="bg-white" alt="profile" src={user.photoUrl}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="chat-header">
-                                    You
-                                    <time className="text-xs opacity-50 ml-2">
-                                        {new Date(msg.time).toLocaleTimeString()}
-                                    </time>
-
-                                </div>
-                                <div className="chat-bubble bg-indigo-500 text-white">
-                                    {msg.text}
-                                </div>
-                                <div className="chat-footer opacity-50">Seen</div>
-                            </div> */}

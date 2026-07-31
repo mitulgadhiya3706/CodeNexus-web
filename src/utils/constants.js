@@ -25,7 +25,8 @@ const getBaseUrl = () => {
     const hostname = window.location.hostname;
 
     if (hostname === "localhost" || hostname === "127.0.0.1") {
-      return "https://codenexus-gzpg.onrender.com";
+      // return "https://codenexus-gzpg.onrender.com";
+      return "/api";
     }
   }
 

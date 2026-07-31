@@ -163,7 +163,7 @@ const EditProfile = ({ user }) => {
 
 
                             <div className="card-actions justify-center">
-                                <button className="btn btn-primary" onClick={saveProfile}>
+                                <button className="btn btn-primary text-sm" onClick={saveProfile}>
                                     Save Profile
                                 </button>
                             </div>
@@ -185,19 +185,3 @@ const EditProfile = ({ user }) => {
 }
 
 export default EditProfile;
-
-
-
-
-
-{/* <label className="fieldset-legend flex justify-start gap-0">
-                                    Gender:
-                                </label> */}
-
-{/* <input
-                                    type="text"
-                                    value={gender}
-                                    onChange={(e) => setGender(e.target.value)}
-                                    className="input w-full"
-                                    placeholder="Type here"
-                                /> */}

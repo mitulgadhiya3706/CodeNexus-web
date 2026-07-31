@@ -2,6 +2,10 @@ import React from 'react'
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useSelector } from 'react-redux';
+import LottieImport from "lottie-react";
+import TwinkleCrown from "../assets/TWINKLE CROWN!.json"
+
+const Lottie = LottieImport?.default || LottieImport;
 
 const Premium = () => {
     const user = useSelector((store) => store.user);
@@ -57,38 +61,88 @@ const Premium = () => {
 
 
     return (
-        <div className='m-20'>
-            <div className="flex w-full flex-col lg:flex-row">
-                <div className="card bg-base-300 rounded-box grid h-80 grow place-content-center gap-4">
-                    <h1 className='text-2xl font-bold'>Silver Membership</h1>
-                    <ul className='mt-2 space-y-1'>
-                        <li>- Chat with other people</li>
-                        <li>- 100 connection Requests per day</li>
-                        <li>- Blue Tick</li>
-                        <li>- 3 months</li>
+
+        <div className='m-10'>
+
+            <div className="text-center max-w-2xl mx-auto">
+                <h1 className="text-2xl font-bold text-white tracking-tight">
+                    Unlock Premium Access
+                </h1>
+                <p className="mt-1 mb-10 text-gray-400 leading-relaxed">
+                    Get access to enhanced features and a better experience.
+                </p>
+            </div>
+
+            <div className="flex max-w-4xl w-full mx-auto justify-center items-center gap-6 flex-col lg:flex-row">
+
+                {/* Silver Card */}
+                <div className="flex-1 rounded-2xl border border-slate-600/60 bg-white/5 backdrop-blur-md shadow-lg hover:shadow-slate-500/20 hover:border-slate-400 transition-all duration-300 hover:scale-102 p-8">
+                    <h1 className="text-2xl font-bold text-slate-100">
+                        Silver Membership
+                    </h1>
+                    <p className="mt-5 text-2xl font-bold mb-4">
+                        ₹399
+                        {/* <span className="text-lg text-gray-400"> / month</span> */}
+                    </p>
+
+                    <ul className="mt-5 space-y-3 text-slate-300">
+                        <li className="flex items-center">
+                            ✔ Get Crown
+                            <div className="h-8 w-8">
+                                <Lottie animationData={TwinkleCrown} />
+                            </div>
+                        </li>
+                        <li>✓ 100 Connection Requests / day</li>
+                        <li>✓ Blue Tick</li>
+                        <li>✓ 3 Months Access</li>
                     </ul>
-                    <button className=" btn bg-amber-50 text-black mt-6 w-full sm:w-auto"
-                        onClick={() => handleBuyClick("silver")}>
-                        {membershipType === "silver" ? "Already Silver" : "Choose Silver"}
+
+                    <button
+                        className="mt-8 w-full rounded-lg bg-slate-200 text-slate-900 font-semibold py-3 hover:bg-white transition-all duration-200 shadow-md hover:shadow-slate-200/40"
+                        onClick={() => handleBuyClick("silver")}
+                    >
+                        {membershipType === "silver"
+                            ? "Already Silver"
+                            : "Choose Silver"}
                     </button>
                 </div>
-                <div className="divider lg:divider-horizontal">OR</div>
-                <div className="card bg-base-300 rounded-box grid h-80 grow place-content-center gap-4">
-                    <h1 className='text-2xl font-bold'>Gold Membership</h1>
-                    <ul className='mt-2 space-y-1'>
-                        <li>- Chat with other people</li>
-                        <li>- Infinite connection Requests per day</li>
-                        <li>- Blue Tick</li>
-                        <li>- 6 months</li>
+
+                {/* Gold Card */}
+                <div className="flex-1 rounded-2xl border border-yellow-500/50 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 backdrop-blur-md shadow-lg hover:shadow-yellow-500/20 hover:border-yellow-400 transition-all duration-300 hover:scale-102 p-8">
+                    <h1 className="text-2xl font-bold text-yellow-300">
+                        Gold Membership
+                    </h1>
+                    <p className="mt-5 text-2xl font-bold mb-4">
+                        ₹499
+                        {/* <span className="text-lg text-gray-400"> / month</span> */}
+                    </p>
+
+                    <ul className="mt-5 space-y-3 text-slate-200">
+                        <li className="flex items-center">
+                            ✔ Get Crown
+                            <div className="h-8 w-8">
+                                <Lottie animationData={TwinkleCrown} />
+                            </div>
+                        </li>
+                        <li>✓ Unlimited Connection Requests</li>
+                        <li>✓ Blue Tick</li>
+                        <li>✓ 6 Months Access</li>
                     </ul>
-                    <button className=" btn bg-amber-400 text-black mt-6 w-full sm:w-auto"
-                        onClick={() => handleBuyClick("gold")}>
-                        {membershipType === "silver" ? "Upgrade to Gold" : "Choose Gold"}
+
+                    <button
+                        className="mt-8 w-full rounded-lg bg-gradient-to-r bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-3 transition-all duration-200 shadow-md hover:shadow-yellow-500/40"
+                        onClick={() => handleBuyClick("gold")}
+                    >
+                        {membershipType === "silver"
+                            ? "Upgrade to Gold"
+                            : "Choose Gold"}
                     </button>
                 </div>
+
             </div>
         </div>
     )
 }
 
 export default Premium
+

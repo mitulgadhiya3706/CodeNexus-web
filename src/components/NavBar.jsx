@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
+import { Code2, Sparkles, Users, Inbox, Crown, User, UserPlus, LogOut } from "lucide-react";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -21,43 +22,100 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-300 shadow-sm">
+      <div className="navbar bg-base-300 shadow-md px-6 border-b border-gray-700">
         <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl"> 👩‍💻CodeNexus </Link>
+          <NavLink
+            to="/"
+            className="flex items-center gap-2 text-2xl font-bold tracking-wide"
+          >
+            <Code2 size={28} className="text-blue-500" />
+            <span>CodeNexus</span>
+          </NavLink>
         </div>
+
+        {user &&
+          <div className="flex items-center gap-3">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `flex items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${isActive
+                  ? "bg-blue-500/30 backdrop-blur-md text-white"
+                  : "text-gray-300 hover:bg-base-200 hover:text-white"
+                }`
+              }
+            >
+              <Sparkles size={16} />
+              For You
+            </NavLink>
+            <NavLink
+              to="/connections"
+              className={({ isActive }) =>
+                `flex items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${isActive
+                  ? "bg-blue-500/30 backdrop-blur-md text-white"
+                  : "text-gray-300 hover:bg-base-200 hover:text-white"
+                }`
+              }
+            >
+              <Users size={18} />
+              Connections
+            </NavLink>
+            <NavLink
+              to="/requests"
+              className={({ isActive }) =>
+                `flex items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${isActive
+                  ? "bg-blue-500/30 backdrop-blur-md text-white"
+                  : "text-gray-300 hover:bg-base-200 hover:text-white"
+                }`
+              }
+            >
+              <UserPlus size={16} />
+              Requests
+            </NavLink>
+            <NavLink
+              to="/premium"
+              className={({ isActive }) =>
+                `flex items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${isActive
+                  ? "bg-amber-400/30 text-amber-300 border border-amber-500/20"
+                  : "text-amber-300"
+                }`
+              }
+            >
+              <Crown size={16} />
+              Premium
+            </NavLink>
+          </div>}
+
+
         {user && (
           <div className="flex gap-0">
-            <p className="flex items-center">
+            <p className="flex items-center font-semibold ml-17">
               Welcome, {user.firstName}
             </p>
             <div className="dropdown dropdown-end mx-5">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
-                    alt="user photo" src={user.photoUrl}
+                    alt="user photo"
+                     src={user?.photoUrl || "/default-avatar.png"}
+                    // src={user.photoUrl}
                   />
                 </div>
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                className="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li>
-                  <Link to="/profile" className="justify-between">
+                  <NavLink to="/profile">
+                    <User size={15} />
                     Profile
                     <span className="badge">New</span>
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/connections">Connections</Link>
-                </li>
-                <li>
-                  <Link to="/requests">Requests</Link>
-                </li>
-                <li>
-                  <Link to="/premium">Premium</Link>
-                </li>
-                <li>
-                  <a onClick={handleLogout}> Logout </a>
+                  <a onClick={handleLogout}>
+                    <LogOut size={15} />
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>

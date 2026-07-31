@@ -3,7 +3,11 @@ import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectionSlice";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import LottieImport from "lottie-react";
+import noDataAnimation from "../assets/No Data.json";
+
+const Lottie = LottieImport?.default || LottieImport;
 
 const Connections = () => {
     const connections = useSelector((store) => store.connections);
@@ -24,9 +28,19 @@ const Connections = () => {
     }, [])
 
     if (!connections) return;
-    if (connections.length === 0)
-        return <h1 className="flex justify-center my-10">No Connections Found</h1>
-
+    if (connections.length === 0) {
+        return (
+            <div className="min-h-[calc(100vh-64px)] flex items-center justify-center">
+                <div className="text-center">
+                    <div className="w-32 mx-auto">
+                        <Lottie animationData={noDataAnimation} />
+                    </div>
+                    <p className=" text-gray-400">No Connections Found!!</p>
+                </div>
+            </div>
+        )
+    }
+    return
     return (
         <div className="text-center my-10">
             <h1 className="text-white text-3xl">Connections</h1>
@@ -57,10 +71,10 @@ const Connections = () => {
                                 )}
                                 <p>{about}</p>
                             </div>
-                            
+
                             <Link to={"/chat/" + _id}>
-                                <button className="btn btn-primary ml-4">
-                                    Chat
+                                <button className="btn btn-primary ml-4 text-base rounded-box">
+                                    Message
                                 </button>
                             </Link>
                         </div>

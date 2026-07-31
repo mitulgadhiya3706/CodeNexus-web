@@ -24,7 +24,7 @@ const Login = () => {
                 { emailId, password },
                 { withCredentials: true },
             );
-            dispatch(addUser(res.data));
+            dispatch(addUser(res.data.user));
             return navigate("/feed");
         } catch (err) {
             setError(err?.response?.data || "Something went wrong!");
@@ -194,7 +194,7 @@ const Login = () => {
                                         <>
                                             Already have an account?{" "}
                                             <span
-                                                className="text-blue-500 cursor-pointer  hover:text-blue-600 underline"
+                                                className="text-blue-500 cursor-pointer hover:text-blue-600 underline"
                                                 onClick={() => setIsLoginForm(!isLoginForm)}>
                                                 Login Here
                                             </span>
@@ -203,7 +203,7 @@ const Login = () => {
                                 </p>
 
                                 <div className="card-actions justify-center">
-                                    <button className="btn btn-primary" onClick={isLoginForm ? handleLogin : handleSignUp}>
+                                    <button className="btn btn-primary text-base px-20 mt-5" onClick={isLoginForm ? handleLogin : handleSignUp}>
                                         {isLoginForm ? 'Login' : 'Sign Up'}
                                     </button>
                                 </div>
