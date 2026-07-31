@@ -58,8 +58,16 @@ const EditProfile = ({ user }) => {
 
                             <div className="flex justify-center">
                                 <div className="avatar">
-                                    <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src={photoUrl} alt="Profile" />
+                                    <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img
+                                            src={photoUrl}
+                                            alt="Profile"
+                                            className="w-full h-full object-cover"
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = "https://api.dicebear.com/7.x/initials/svg?seed=" + (firstName?.[0] || "You");
+                                            }}
+                                        />
                                     </div>
                                 </div>
                             </div>

@@ -91,13 +91,16 @@ const NavBar = () => {
             <p className="flex items-center font-semibold ml-17">
               Welcome, {user.firstName}
             </p>
-            <div className="dropdown dropdown-end mx-5">
+            <div className="dropdown dropdown-end mx-3 ">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
                     alt="user photo"
-                     src={user?.photoUrl || "/default-avatar.png"}
-                    // src={user.photoUrl}
+                    src={user.photoUrl}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "https://api.dicebear.com/7.x/initials/svg?seed=" + user.firstName[0];
+                    }}
                   />
                 </div>
               </div>
