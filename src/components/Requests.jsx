@@ -56,6 +56,9 @@ const Requests = () => {
             <h1 className="text-bold text-white text-2xl">Connection Requests</h1>
 
             {requests.map((request) => {
+                if (!request.fromUserId) {
+                    return null;
+                }
                 console.log("Full request object:", request);
                 const { _id, firstName, lastName, photoUrl, age, gender, about } = request.fromUserId;
 

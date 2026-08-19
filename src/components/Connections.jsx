@@ -40,7 +40,7 @@ const Connections = () => {
             </div>
         )
     }
-    return
+    
     return (
         <div className="text-center my-10">
             <h1 className="text-white text-3xl">Connections</h1>
